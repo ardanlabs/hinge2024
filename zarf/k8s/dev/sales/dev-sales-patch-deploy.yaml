@@ -14,3 +14,11 @@ spec:
     spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
+
+      containers:
+      - name: sales
+        resources:
+          requests:
+            cpu: "250m"     # I need access to 25ms/100ms on one core
+          limits:
+            cpu: "250m"     # Execute instructions 25ms/100ms on one core
