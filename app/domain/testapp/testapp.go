@@ -7,7 +7,7 @@ import (
 	"github.com/ardanlabs/service/foundation/web"
 )
 
-func test(ctx context.Context, w http.ResponseWriter, r *http.Request) web.Encoder {
+func test(ctx context.Context, r *http.Request) web.Encoder {
 	status := status{
 		Status: "OK",
 	}
