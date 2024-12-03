@@ -5,7 +5,11 @@ import (
 	"net/http"
 )
 
-type HandlerFunc func(ctx context.Context, w http.ResponseWriter, r *http.Request) error
+type Encoder interface {
+	Encode() (data []byte, contentType string, err error)
+}
+
+type HandlerFunc func(ctx context.Context, r *http.Request) Encoder
 
 type App struct {
 	*http.ServeMux
@@ -24,7 +28,11 @@ func (a *App) HandleFunc(pattern string, handler HandlerFunc) {
 
 		// WE CAN DO WHAT WE WANT HERE
 
-		handler(r.Context(), w, r)
+		ctx := r.Context()
+
+		dataModel := handler(ctx, r)
+
+		Respond(ctx, w, dataModel)
 
 		// WE CAN DO WHAT WE WANT HERE
 	}
