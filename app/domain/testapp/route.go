@@ -1,7 +1,7 @@
 package testapp
 
-import "net/http"
+import "github.com/ardanlabs/service/foundation/web"
 
-func Routes(mux *http.ServeMux) {
-
+func Routes(app *web.App) {
+	app.HandleFunc("GET /test", test)
 }

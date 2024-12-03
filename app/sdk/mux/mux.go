@@ -1,15 +1,14 @@
 package mux
 
 import (
-	"net/http"
-
 	"github.com/ardanlabs/service/app/domain/testapp"
+	"github.com/ardanlabs/service/foundation/web"
 )
 
-func WebAPI() *http.ServeMux {
-	mux := http.NewServeMux()
+func WebAPI() *web.App {
+	app := web.NewApp()
 
-	testapp.Routes(mux)
+	testapp.Routes(app)
 
-	return mux
+	return app
 }
