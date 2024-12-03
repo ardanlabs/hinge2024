@@ -20,3 +20,15 @@ func test(ctx context.Context, r *http.Request) web.Encoder {
 
 	return status
 }
+
+func testPanic(_ context.Context, _ *http.Request) web.Encoder {
+	if n := rand.IntN(100); n%2 == 0 {
+		panic("WE HAVE A PANIC")
+	}
+
+	status := status{
+		Status: "OK",
+	}
+
+	return status
+}

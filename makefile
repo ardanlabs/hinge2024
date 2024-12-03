@@ -7,6 +7,9 @@ run:
 curl-test:
 	curl -i localhost:3000/test
 
+curl-panic:
+	curl -i localhost:3000/panic
+
 # ==============================================================================
 # Define dependencies
 
