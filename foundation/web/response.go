@@ -2,6 +2,7 @@ package web
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 )
@@ -11,6 +12,12 @@ type httpStatus interface {
 }
 
 func Respond(ctx context.Context, w http.ResponseWriter, dataModel Encoder) error {
+	if err := ctx.Err(); err != nil {
+		if errors.Is(err, context.Canceled) {
+			return errors.New("client disconnected, do not send response")
+		}
+	}
+
 	data, contentType, err := dataModel.Encode()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
