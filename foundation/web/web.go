@@ -3,6 +3,8 @@ package web
 import (
 	"context"
 	"net/http"
+
+	"github.com/google/uuid"
 )
 
 type Encoder interface {
@@ -32,7 +34,7 @@ func (a *App) HandleFunc(pattern string, handler HandlerFunc, mw ...MidFunc) {
 
 		// WE CAN DO WHAT WE WANT HERE
 
-		ctx := r.Context()
+		ctx := setTraceID(r.Context(), uuid.NewString())
 
 		dataModel := handler(ctx, r)
 
