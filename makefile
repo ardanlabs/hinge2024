@@ -15,13 +15,13 @@ pgcli:
 
 curl-newuser:
 	curl -i -X POST http://localhost:3000/users \
-	-d { \
+	-d '{ \
 		"name": "Bill", \
 		"email": "bill@ardanlabs.com", \
 		"roles": ["ADMIN"], \
 		"password": "123", \
-		"passwordConfirm": "123", \
-	}
+		"passwordConfirm": "123" \
+	}'
 
 # ==============================================================================
 # Define dependencies

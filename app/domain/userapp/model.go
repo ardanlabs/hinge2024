@@ -6,10 +6,24 @@ import (
 	"net/mail"
 	"time"
 
+	"github.com/ardanlabs/service/app/sdk/errs"
 	"github.com/ardanlabs/service/business/domain/userbus"
 	"github.com/ardanlabs/service/business/types/name"
 	"github.com/ardanlabs/service/business/types/role"
 )
+
+type queryParams struct {
+	Page             string
+	Rows             string
+	OrderBy          string
+	ID               string
+	Name             string
+	Email            string
+	StartCreatedDate string
+	EndCreatedDate   string
+}
+
+// =============================================================================
 
 type User struct {
 	ID           string   `json:"id"`
@@ -58,9 +72,9 @@ func (app *NewUser) Decode(data []byte) error {
 }
 
 func (app NewUser) Validate() error {
-	// if err := errs.Check(app); err != nil {
-	// 	return errs.Newf(errs.InvalidArgument, "validate: %s", err)
-	// }
+	if err := errs.Check(app); err != nil {
+		return errs.Newf(errs.InvalidArgument, "validate: %s", err)
+	}
 
 	return nil
 }
