@@ -14,11 +14,11 @@ pgcli:
 	pgcli postgresql://postgres:postgres@localhost
 
 curl-newuser:
-	curl -i -X POST localhost:3000/users \
-	-d {
+	curl -i -X POST http://localhost:3000/users \
+	-d { \
 		"name": "Bill", \
 		"email": "bill@ardanlabs.com", \
-		"roles": "[ADMIN]", \
+		"roles": ["ADMIN"], \
 		"password": "123", \
 		"passwordConfirm": "123", \
 	}
