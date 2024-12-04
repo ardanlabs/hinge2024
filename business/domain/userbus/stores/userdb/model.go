@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/ardanlabs/service/business/domain/userbus"
+	"github.com/ardanlabs/service/business/sdk/sqldb/dbarray"
 	"github.com/ardanlabs/service/business/types/name"
 	"github.com/ardanlabs/service/business/types/role"
 	"github.com/google/uuid"
