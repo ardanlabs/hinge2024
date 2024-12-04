@@ -13,6 +13,16 @@ curl-panic:
 pgcli:
 	pgcli postgresql://postgres:postgres@localhost
 
+curl-newuser:
+	curl -i -X POST localhost:3000/users \
+	-d {
+		"name": "Bill", \
+		"email": "bill@ardanlabs.com", \
+		"roles": "[ADMIN]", \
+		"password": "123", \
+		"passwordConfirm": "123", \
+	}
+
 # ==============================================================================
 # Define dependencies
 
